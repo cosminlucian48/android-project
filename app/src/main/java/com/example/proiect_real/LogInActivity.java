@@ -42,11 +42,6 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toast.makeText(this, "Wrong Credentials", Toast.LENGTH_LONG).show();
-
-
-
-
         usernameEditText = (EditText) findViewById(R.id.username);
         passwordEditText = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.loginButton);
@@ -95,13 +90,13 @@ public class LogInActivity extends AppCompatActivity {
 //        if (username.equals("admin") && userPassword.equals("admin")) {
         if (true) {
             Log.d(TAG, "Login button clicked!");
-            Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LogInActivity.this, MainScreenActivity.class);
             intent.putExtra(USERNAME_KEY, username);
             startActivityForResult.launch(intent);
 
         } else {
-            Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
             counterTextView.setVisibility(View.VISIBLE);
             counterTextView.setBackgroundColor(Color.RED);
             counter--;
@@ -112,11 +107,12 @@ public class LogInActivity extends AppCompatActivity {
             }
         }
     }
+
     public void hideSoftKeyboard() {
         InputMethodManager inputMethodManager =
                 (InputMethodManager) LogInActivity.this.getSystemService(
                         Activity.INPUT_METHOD_SERVICE);
-        if(inputMethodManager.isAcceptingText()){
+        if (inputMethodManager.isAcceptingText()) {
             inputMethodManager.hideSoftInputFromWindow(
                     LogInActivity.this.getCurrentFocus().getWindowToken(),
                     0

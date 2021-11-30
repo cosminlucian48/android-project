@@ -3,8 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/cbeja/Documents/Facultate/android-fundamentals/proiect_real/app/src/main/res/drawable/ic_message.xml" value="0.17760416666666667" />
         <entry key="..\:/Users/cbeja/Documents/Facultate/android-fundamentals/proiect_real/app/src/main/res/layout/activity_main.xml" value="0.17481884057971014" />
         <entry key="..\:/Users/cbeja/Documents/Facultate/android-fundamentals/proiect_real/app/src/main/res/layout/activity_main_screen.xml" value="0.1" />
+        <entry key="..\:/Users/cbeja/Documents/Facultate/android-fundamentals/proiect_real/app/src/main/res/layout/fragment_account.xml" value="0.25" />
+        <entry key="..\:/Users/cbeja/Documents/Facultate/android-fundamentals/proiect_real/app/src/main/res/layout/fragment_classes.xml" value="0.25" />
+        <entry key="..\:/Users/cbeja/Documents/Facultate/android-fundamentals/proiect_real/app/src/main/res/layout/fragment_message.xml" value="0.25" />
+        <entry key="..\:/Users/cbeja/Documents/Facultate/android-fundamentals/proiect_real/app/src/main/res/layout/fragment_students.xml" value="0.25" />
+        <entry key="..\:/Users/cbeja/Documents/Facultate/android-fundamentals/proiect_real/app/src/main/res/layout/nav_header.xml" value="0.1" />
         <entry key="..\:/Users/cbeja/Documents/Facultate/android-fundamentals/proiect_real/app/src/main/res/layout/recycler_view_item.xml" value="0.2" />
         <entry key="..\:/Users/cbeja/Documents/Facultate/android-fundamentals/proiect_real/app/src/main/res/menu/navigation_drawer.xml" value="0.1" />
       </map>

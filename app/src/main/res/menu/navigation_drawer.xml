@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="HardcodedText">
+    tools:ignore="HardcodedText"
+    tools:showIn="navigation_view">
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_account"
-            android:title="My Account" />
+            android:title="My Account"
+            android:icon="@drawable/ic_account"/>
 
         <item
-            android:id="@+id/nav_settings"
-            android:title="Settings" />
-
+            android:id="@+id/nav_students"
+            android:icon="@drawable/ic_students"
+            android:title="Students" />
         <item
-            android:id="@+id/nav_logout"
-            android:title="Logout" />
+            android:id="@+id/nav_classes"
+            android:title="Classes"
+            android:icon="@drawable/ic_classes"/>
+        <item
+            android:id="@+id/nav_message"
+            android:title="Message"
+            android:icon="@drawable/ic_message"
+            />
     </group>
+
+    <item
+        android:id="@+id/nav_git"
+        android:title="GitHub Link"
+        android:icon="@drawable/git_png"
+        />
+    <item
+        android:id="@+id/nav_logout"
+        android:title="LogOut"
+        android:icon="@drawable/ic_login"
+        />
+
+
 </menu>

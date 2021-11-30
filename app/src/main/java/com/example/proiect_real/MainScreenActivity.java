@@ -3,6 +3,8 @@ package com.example.proiect_real;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,15 +16,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
-public class MainScreenActivity extends AppCompatActivity {
-
-    Button logoutButton;
-
+public class MainScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public final static String LOGOUT_KEY = "logoutkey";
-    public DrawerLayout drawerLayout;
+    private DrawerLayout drawer;
     public ActionBarDrawerToggle actionBarDrawerToggle;
 
 
@@ -31,56 +33,69 @@ public class MainScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        drawerLayout = findViewById(R.id.my_drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout, R.string.nav_open, R.string.nav_close);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
+        drawer = findViewById(R.id.my_drawer_layout);
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.nav_open, R.string.nav_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StudentsFragment()).commit();
 
-        logoutButton = (Button) findViewById(R.id.logoutButton);
+            navigationView.setCheckedItem(R.id.nav_students);
+        }
+    }
+
+    private void logout() {
         Bundle bundle = getIntent().getExtras();
+        String message = "Ana";
+        if (bundle != null) {
+            message = bundle.getString(LogInActivity.USERNAME_KEY);
 
-        RecyclerView recyclerView  = (RecyclerView) findViewById(R.id.tracksView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-        List<Track> trackList = new DataSource().getTracks();
-
-        TrackAdapter trackAdapter = new TrackAdapter(trackList);
-        recyclerView.setAdapter(trackAdapter);
-
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(MainScreenActivity.this, LogInActivity.class);
-//                if(bundle != null){
-//                    String message = bundle.getString(LogInActivity.USERNAME_KEY);
-//                    intent.putExtra(LOGOUT_KEY,message);
-//                }
-//
-//                startActivity(intent);
-                String message = "Ana";
-                if(bundle != null){
-//                    message = "Andrei";
-                    message = bundle.getString(LogInActivity.USERNAME_KEY);
-
-                }
-                Intent intent = new Intent();
-                intent.putExtra(LOGOUT_KEY, message);
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        });
+        }
+        Intent intent = new Intent();
+        intent.putExtra(LOGOUT_KEY, message);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(actionBarDrawerToggle.onOptionsItemSelected(item)){
-            return true;
-        }
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.nav_account:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AccountFragment()).commit();
+                break;
+            case R.id.nav_classes:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ClassesFragment()).commit();
+                break;
+            case R.id.nav_students:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StudentsFragment()).commit();
+                break;
+            case R.id.nav_message:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment()).commit();
+                break;
+            case R.id.nav_logout:
+                logout();
+                Toast.makeText(this, "LogOut", Toast.LENGTH_LONG).show();
+
+                break;
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
 }

@@ -11,10 +11,12 @@
         android:theme="@style/Theme.Proiect_real">
         <activity
             android:name=".MainScreenActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Proiect_real.NoActionBar"/>
         <activity
             android:name=".LogInActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Proiect_real.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

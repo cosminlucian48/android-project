@@ -2,6 +2,6 @@
     <string name="app_name">Classroom</string>
     <string name="prompt_email">prompt_email</string>
     <string name="main_screen">Main screen</string>
-    <string name="nav_open">Open</string>
-    <string name="nav_close">Close</string>
+    <string name="nav_open">Open navigation drawer</string>
+    <string name="nav_close">Close navigation drawer</string>
 </resources>

@@ -19,14 +19,14 @@ public class StudentsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.fragment_students,container,false);
-        recyclerView  = view.findViewById(R.id.tracksView);
+        recyclerView  = view.findViewById(R.id.studentsView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        List<Track> trackList = new DataSource().getTracks();
+        List<StudentModel> studentList = new DataSource().getStudents();
 
-        TrackAdapter trackAdapter = new TrackAdapter(trackList);
-        recyclerView.setAdapter(trackAdapter);
+        StudentAdapter studentAdapter = new StudentAdapter(studentList);
+        recyclerView.setAdapter(studentAdapter);
 
 
 

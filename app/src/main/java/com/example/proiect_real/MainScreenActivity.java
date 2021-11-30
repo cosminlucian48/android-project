@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -76,13 +77,13 @@ public class MainScreenActivity extends AppCompatActivity implements NavigationV
             case R.id.nav_students:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StudentsFragment()).commit();
                 break;
-            case R.id.nav_message:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MessageFragment()).commit();
-                break;
             case R.id.nav_logout:
                 logout();
                 Toast.makeText(this, "LogOut", Toast.LENGTH_LONG).show();
-
+                break;
+            case R.id.nav_git:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/cosminlucian48"));
+                startActivity(browserIntent);
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);

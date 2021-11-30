@@ -6,8 +6,8 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_account"
-            android:title="My Account"
-            android:icon="@drawable/ic_account"/>
+            android:icon="@drawable/ic_account"
+            android:title="My Account" />
 
         <item
             android:id="@+id/nav_students"
@@ -15,25 +15,18 @@
             android:title="Students" />
         <item
             android:id="@+id/nav_classes"
-            android:title="Classes"
-            android:icon="@drawable/ic_classes"/>
-        <item
-            android:id="@+id/nav_message"
-            android:title="Message"
-            android:icon="@drawable/ic_message"
-            />
+            android:icon="@drawable/ic_classes"
+            android:title="Classes" />
     </group>
 
     <item
         android:id="@+id/nav_git"
-        android:title="GitHub Link"
         android:icon="@drawable/git_png"
-        />
+        android:title="GitHub Link" />
     <item
         android:id="@+id/nav_logout"
-        android:title="LogOut"
         android:icon="@drawable/ic_login"
-        />
+        android:title="LogOut" />
 
 
 </menu>

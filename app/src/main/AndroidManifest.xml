@@ -10,11 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proiect_real">
         <activity
-            android:name=".MainScreenActivity"
-            android:exported="false"
-            android:theme="@style/Theme.Proiect_real.NoActionBar"/>
+            android:name=".activities.NewStudentActivity"
+            android:exported="false" />
         <activity
-            android:name=".LogInActivity"
+            android:name=".activities.MainScreenActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Proiect_real.NoActionBar" />
+        <activity
+            android:name=".activities.LogInActivity"
             android:exported="true"
             android:theme="@style/Theme.Proiect_real.NoActionBar">
             <intent-filter>

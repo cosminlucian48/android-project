@@ -1,4 +1,4 @@
-package com.example.proiect_real;
+package com.example.proiect_real.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -6,22 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.proiect_real.R;
+import com.example.proiect_real.activities.LogInActivity;
+import com.example.proiect_real.fragments.AccountFragment;
+import com.example.proiect_real.fragments.ClassesFragment;
+import com.example.proiect_real.fragments.StudentsFragment;
 import com.google.android.material.navigation.NavigationView;
-
-import java.util.List;
 
 public class MainScreenActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public final static String LOGOUT_KEY = "logoutkey";
@@ -90,6 +87,7 @@ public class MainScreenActivity extends AppCompatActivity implements NavigationV
         return true;
     }
 
+
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -98,5 +96,6 @@ public class MainScreenActivity extends AppCompatActivity implements NavigationV
             super.onBackPressed();
         }
     }
+
 
 }

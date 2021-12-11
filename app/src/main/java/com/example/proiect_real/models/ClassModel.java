@@ -1,4 +1,4 @@
-package com.example.proiect_real;
+package com.example.proiect_real.models;
 
 import java.io.Serializable;
 

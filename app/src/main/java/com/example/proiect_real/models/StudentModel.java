@@ -1,6 +1,7 @@
-package com.example.proiect_real;
+package com.example.proiect_real.models;
 
 
+import com.example.proiect_real.entity.StudentEntity;
 import com.github.javafaker.Bool;
 
 import java.io.Serializable;
@@ -76,5 +77,52 @@ public class StudentModel implements Serializable {
     public String getParentPhone() {
         return parentPhone;
     }
+
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setParentFullName(String parentFullName) {
+        this.parentFullName = parentFullName;
+    }
+
+    public void setParentEmail(String parentEmail) {
+        this.parentEmail = parentEmail;
+    }
+
+    public void setParentPhone(String parentPhone) {
+        this.parentPhone = parentPhone;
+    }
+
+    public void setSex(Boolean sex) {
+        this.sex = sex;
+    }
+
+
 }
 

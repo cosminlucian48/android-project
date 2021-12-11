@@ -1,6 +1,8 @@
 package com.example.proiect_real;
 
 
+import com.example.proiect_real.models.ClassModel;
+import com.example.proiect_real.models.StudentModel;
 import com.github.javafaker.Faker;
 
 import java.util.ArrayList;
@@ -25,14 +27,14 @@ public class DataSource {
             student = new StudentModel(
                     fname,
                     lname,
-                    faker.date().birthday(17, 18).toString(),
+                    "19 august",
                     faker.number().randomDouble(4, 1, 2),
                     faker.number().numberBetween(30, 100),
                     fname + lname + "@gmail.com",
-                    faker.address().toString(),
+                    "stejarului 75",
                     pname,
                     pname + "@gmail.com",
-                    faker.phoneNumber().toString(),
+                    "0784126338",
                     sex
             );
             students.add(student);

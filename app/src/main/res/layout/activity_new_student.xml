@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.NewStudentActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-300dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Enter student information:"
+                android:textSize="25dp"
+                android:layout_marginBottom="20dp"/>
+
+            <EditText
+                android:id="@+id/newStudentFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Student FirstName" />
+
+            <EditText
+                android:id="@+id/newStudentLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Student LastName" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Birthdate" />
+
+            <DatePicker
+                android:id="@+id/newStudentBirthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner" />
+
+            <EditText
+                android:id="@+id/newStudentHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Height" />
+
+            <EditText
+                android:id="@+id/newStudentWeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Weight" />
+
+            <EditText
+                android:id="@+id/newStudentEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="email" />
+
+            <EditText
+                android:id="@+id/newStudentAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address" />
+
+            <EditText
+                android:id="@+id/newStudentParentFullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Parent Full Name" />
+
+            <EditText
+                android:id="@+id/newStudentParentEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Parent email" />
+
+            <EditText
+                android:id="@+id/newStudentParentPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Parent phone" />
+
+            <RadioGroup
+                android:id="@+id/newStudentSex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/newStudentMasculine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="M" />
+
+                <RadioButton
+                    android:id="@+id/newStudentFeminine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="F" />
+
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/create_student_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

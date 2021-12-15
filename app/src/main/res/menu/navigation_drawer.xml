@@ -17,6 +17,10 @@
             android:id="@+id/nav_classes"
             android:icon="@drawable/ic_classes"
             android:title="Classes" />
+        <item
+            android:id="@+id/nav_grades"
+            android:icon="@drawable/ic_classes"
+            android:title="Grades" />
     </group>
 
     <item

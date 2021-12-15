@@ -36,4 +36,12 @@
         <item name="android:background">@android:color/holo_orange_light</item>
         <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/teal_200</item>
+        <item name="android:statusBarColor">#E91E63</item>
+    </style>
 </resources>

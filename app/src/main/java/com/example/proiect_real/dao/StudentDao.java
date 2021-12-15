@@ -6,9 +6,11 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Transaction;
 import androidx.room.Update;
 
 import com.example.proiect_real.entity.StudentEntity;
+import com.example.proiect_real.relations.StudentAndGrades;
 
 import java.util.List;
 
@@ -29,4 +31,6 @@ public abstract class StudentDao {
 
     @Delete
     public abstract void delete(StudentEntity studentEntity);
+
+
 }

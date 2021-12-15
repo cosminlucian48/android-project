@@ -49,12 +49,13 @@ public class DataSource {
 
         String teacherName;
         ClassModel classModel;
-        for(int i=0;i<7;i++){
+        for(int i=0;i<5;i++){
             teacherName = faker.name().fullName();
             classModel = new ClassModel(
                     faker.name().title(),
                     teacherName,
-                    teacherName+"@gmail.com"
+                    teacherName+"@gmail.com",
+                    faker.lorem().paragraphs(2).toString()
             );
             classes.add(classModel);
         }

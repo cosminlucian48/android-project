@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.LogInActivity"
+    android:background="@drawable/background_main"
     android:orientation="vertical">
 
     <TextView
@@ -38,12 +39,14 @@
         android:layout_width = "match_parent"
         android:layout_height = "wrap_content"
         android:hint="example@ex.com"
+        android:background="@drawable/edit_text_top"
         />
     <EditText
         android:id = "@+id/password"
         android:layout_width = "match_parent"
         android:layout_height = "wrap_content"
         android:inputType = "textPassword"
+        android:background="@drawable/edit_text_bottom"
         android:hint="password"/>
 
     <Button
@@ -59,5 +62,17 @@
         android:id="@+id/textView3"
         android:textSize="25dp"
         />
+    <TextView
+        android:id="@+id/textViewRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="sans-serif"
+        android:padding="10dp"
+        android:text="Don't Have an Account?  Sign Up"
+        android:textAllCaps="true"
+        android:textColor="#FAD0E1"
+        android:textSize="13dp"
+        android:textStyle="bold" />
 
 </LinearLayout>

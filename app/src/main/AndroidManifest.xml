@@ -10,14 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proiect_real">
         <activity
+            android:name=".activities.NewGradesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.LogInActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Proiect_real.NoActionBar" />
+        <activity
             android:name=".activities.NewStudentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".activities.MainScreenActivity"
             android:exported="false"
             android:theme="@style/Theme.Proiect_real.NoActionBar" />
         <activity
-            android:name=".activities.LogInActivity"
+            android:name=".activities.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.Proiect_real.NoActionBar">
             <intent-filter>

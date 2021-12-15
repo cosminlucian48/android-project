@@ -36,6 +36,8 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
         holder.teacher.setText(teacher);
         String teacherMail = classes.get(position).getTeacherMail();
         holder.teacherMail.setText(teacherMail);
+        String cdescription = classes.get(position).getClassDescription();
+        holder.cdescription.setText(cdescription);
     }
 
     @Override
@@ -47,12 +49,14 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
         private TextView cname;
         private TextView teacher;
         private TextView teacherMail;
+        private TextView cdescription;
 
         ClassViewHolder(View itemView) {
             super(itemView);
             cname = itemView.findViewById(R.id.cname);
             teacher = itemView.findViewById(R.id.teacher);
             teacherMail = itemView.findViewById(R.id.teacherMail);
+            cdescription = itemView.findViewById(R.id.classDescription);
         }
     }
 }

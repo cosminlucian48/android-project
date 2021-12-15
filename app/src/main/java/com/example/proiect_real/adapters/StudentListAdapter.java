@@ -10,20 +10,26 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import com.example.proiect_real.entity.StudentGradesEntity;
 import com.example.proiect_real.fragments.StudentsFragment;
 import com.example.proiect_real.view_holder.StudentViewHolder;
 import com.example.proiect_real.entity.StudentEntity;
 import com.example.proiect_real.fragments.StudentDialogFragment;
+import com.example.proiect_real.view_model.GradesViewModel;
 import com.example.proiect_real.view_model.StudentViewModel;
+
+import java.util.concurrent.ExecutionException;
 
 public class StudentListAdapter extends ListAdapter<StudentEntity, StudentViewHolder> {
     Context context;
     StudentViewModel studentViewModel;
-    public StudentListAdapter(Context ctx, @NonNull DiffUtil.ItemCallback<StudentEntity> diffCallBack, StudentViewModel sm){
+    GradesViewModel gradesViewModel;
+    public StudentListAdapter(Context ctx, @NonNull DiffUtil.ItemCallback<StudentEntity> diffCallBack, StudentViewModel sm,GradesViewModel gm){
 
         super(diffCallBack);
         this.context = ctx;
         this.studentViewModel = sm;
+        this.gradesViewModel = gm;
     }
 
     @NonNull
@@ -50,6 +56,16 @@ public class StudentListAdapter extends ListAdapter<StudentEntity, StudentViewHo
             @Override
             public void onClick(View v) {
                 studentViewModel.deleteStudent(current);
+                StudentGradesEntity studentGradesEntity;
+                try {
+                   studentGradesEntity = gradesViewModel.getGradeByStudentId(current.getId());
+                    gradesViewModel.deleteGrade(studentGradesEntity);
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 

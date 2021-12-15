@@ -9,6 +9,7 @@ import com.example.proiect_real.entity.StudentEntity;
 import com.example.proiect_real.repository.StudentRepository;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class StudentViewModel extends AndroidViewModel {
     private StudentRepository studentRepository;
@@ -31,4 +32,6 @@ public class StudentViewModel extends AndroidViewModel {
     public void deleteAllStudents(){studentRepository.deleteAll();}
 
     public void deleteStudent(StudentEntity studentEntity) {studentRepository.deleteStudent(studentEntity);}
+
+    public StudentEntity getStudentById(int id) throws ExecutionException, InterruptedException {return studentRepository.getStudentById(id);};
 }

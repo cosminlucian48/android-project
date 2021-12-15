@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
@@ -26,10 +28,15 @@ import com.example.proiect_real.models.StudentModel;
 import com.example.proiect_real.view_holder.StudentGradeViewHolder;
 import com.example.proiect_real.view_model.GradesViewModel;
 import com.example.proiect_real.view_model.StudentViewModel;
+import com.example.proiect_real.view_model.UserViewModel;
+
+import java.util.concurrent.ExecutionException;
 
 public class StudentGradeListAdapter extends ListAdapter<StudentGradesEntity, StudentGradeViewHolder> {
     Context context;
     GradesViewModel gradesViewModel;
+    StudentViewModel studentViewModel;
+    StudentEntity studentEntity;
     public static final int NEW_GRADE_ACTIVITY_REQUEST_CODE = 4;
     private final String TAG = StudentGradeListAdapter.class.getSimpleName();
 
@@ -49,7 +56,15 @@ public class StudentGradeListAdapter extends ListAdapter<StudentGradesEntity, St
     @Override
     public void onBindViewHolder(@NonNull StudentGradeViewHolder holder, int position) {
         StudentGradesEntity current = getItem(position);
-        holder.bind(String.valueOf(current.getStudentId()), current.getSubject1_grades_json(), current.getSubject2_grades_json(), current.getSubject3_grades_json(), current.getSubject4_grades_json(), current.getSubject5_grades_json());
+        studentViewModel = new ViewModelProvider((ViewModelStoreOwner) context).get(StudentViewModel.class);
+        try {
+            studentEntity = studentViewModel.getStudentById(current.getStudentId());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        holder.bind(studentEntity.getFirstName() + " " + studentEntity.getLastName(), current.getSubject1_grades_json(), current.getSubject2_grades_json(), current.getSubject3_grades_json(), current.getSubject4_grades_json(), current.getSubject5_grades_json());
 
         holder.addGradeButton.setOnClickListener(new View.OnClickListener() {
             @Override

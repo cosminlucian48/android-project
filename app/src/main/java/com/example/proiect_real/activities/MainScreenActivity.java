@@ -101,8 +101,13 @@ public class MainScreenActivity extends AppCompatActivity implements NavigationV
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new StudentsFragment()).commit();
                 break;
             case R.id.nav_grades:
-                gradesFragment = new GradesFragment();
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, gradesFragment).commit();
+                if(loggedInUser.getAccountType().equals("Teacher")) {
+                    gradesFragment = new GradesFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, gradesFragment).commit();
+                }else{
+                    Log.d(TAG,"Nu esti teacher");
+                    Toast.makeText(this,"You are not a teacher",Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.nav_logout:
                 logout();

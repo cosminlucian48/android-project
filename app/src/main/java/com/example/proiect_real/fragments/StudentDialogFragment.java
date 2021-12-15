@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -101,6 +102,13 @@ public class StudentDialogFragment extends AppCompatDialogFragment  {
 
         TextView dialog_student_parent_phone =(TextView)  view.findViewById(R.id.dialog_student_parent_phone);
         dialog_student_parent_phone.setText(studentModel.getParentPhone());
+
+        ImageView dialog_student_profile_image = (ImageView) view.findViewById(R.id.profile_image);
+        if(studentModel.getSex()){
+            dialog_student_profile_image.setImageResource(R.drawable.female_placeholder);
+        }else{
+            dialog_student_profile_image.setImageResource(R.drawable.male_placeholder);
+        }
 
         Button dialog_student_call_parent = view.findViewById(R.id.dialog_student_call_parent);
         dialog_student_call_parent.setOnClickListener(new View.OnClickListener() {

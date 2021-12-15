@@ -6,21 +6,21 @@
     android:gravity="bottom"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    android:layout_height="176dp">
+    android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/shrek"/>
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/logo_noname"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Shrek, atat"
+        android:text="Classroom"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="shrek@gmail.com"/>
+        android:text="classroom@gmail.com"/>
 
 </LinearLayout>

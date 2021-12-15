@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -17,7 +18,7 @@ public class StudentViewHolder extends RecyclerView.ViewHolder {
     private final TextView studentBirthdayView;
     private final ImageView studentPhotoView;
     public final Button deleteButton;
-    public ConstraintLayout constraintLayout;
+    public LinearLayout constraintLayout;
 
     private StudentViewHolder(View itemView) {
         super(itemView);

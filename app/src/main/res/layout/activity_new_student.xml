@@ -21,26 +21,39 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:text="Enter student information:"
-                android:textSize="25dp"
-                android:layout_marginBottom="20dp"/>
+                android:textSize="25dp" />
 
             <EditText
                 android:id="@+id/newStudentFirstName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:height="40dp"
+                android:background="@drawable/edit_text_top"
                 android:hint="Student FirstName" />
 
             <EditText
                 android:id="@+id/newStudentLastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:height="40dp"
+                android:background="@drawable/edit_text_middle"
                 android:hint="Student LastName" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Birthdate" />
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:height="30dp"
+                android:background="@drawable/edit_text_bottom"
+                android:text="Birthdate: "
+                android:textSize="18dp" />
 
             <DatePicker
                 android:id="@+id/newStudentBirthday"
@@ -53,42 +66,70 @@
                 android:id="@+id/newStudentHeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:height="40dp"
+                android:background="@drawable/edit_text_top"
                 android:hint="Height" />
 
             <EditText
                 android:id="@+id/newStudentWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:height="40dp"
+                android:background="@drawable/edit_text_middle"
                 android:hint="Weight" />
 
             <EditText
                 android:id="@+id/newStudentEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:height="40dp"
+                android:background="@drawable/edit_text_middle"
                 android:hint="email" />
 
             <EditText
                 android:id="@+id/newStudentAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:height="40dp"
+                android:background="@drawable/edit_text_middle"
                 android:hint="Address" />
 
             <EditText
                 android:id="@+id/newStudentParentFullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:height="40dp"
+                android:background="@drawable/edit_text_middle"
                 android:hint="Parent Full Name" />
 
             <EditText
                 android:id="@+id/newStudentParentEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:height="40dp"
+                android:background="@drawable/edit_text_middle"
                 android:hint="Parent email" />
 
             <EditText
                 android:id="@+id/newStudentParentPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:height="40dp"
+                android:background="@drawable/edit_text_bottom"
                 android:hint="Parent phone" />
 
             <RadioGroup
@@ -100,6 +141,7 @@
                     android:id="@+id/newStudentMasculine"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:checked="true"
                     android:text="M" />
 
                 <RadioButton
@@ -110,11 +152,24 @@
 
             </RadioGroup>
 
-            <Button
-                android:id="@+id/create_student_button"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/create_student_button"
+                    android:layout_width="190dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content"
+                    android:text="Create" />
+
+                <Button
+                    android:id="@+id/cancel_create_student_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

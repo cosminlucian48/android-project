@@ -21,7 +21,8 @@
             android:exported="false" />
         <activity
             android:name=".activities.RegisterActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Proiect_real.NoActionBar" />
         <activity
             android:name=".activities.MainScreenActivity"
             android:exported="false"

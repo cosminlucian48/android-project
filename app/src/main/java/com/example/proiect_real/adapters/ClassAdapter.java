@@ -1,13 +1,15 @@
-package com.example.proiect_real;
+package com.example.proiect_real.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.proiect_real.R;
 import com.example.proiect_real.models.ClassModel;
 
 import java.util.List;
@@ -38,6 +40,20 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
         holder.teacherMail.setText(teacherMail);
         String cdescription = classes.get(position).getClassDescription();
         holder.cdescription.setText(cdescription);
+
+        if(cname.equals("Mathematics")){
+            holder.cimage.setImageResource(R.drawable.mathematics_back);
+        }else if(cname.equals("English")){
+            holder.cimage.setImageResource(R.drawable.english_back);
+        }else if(cname.equals("Informatics")){
+            holder.cimage.setImageResource(R.drawable.informatics_back);
+        }else if(cname.equals("Science")){
+            holder.cimage.setImageResource(R.drawable.science_back);
+        }else if(cname.equals("Music")){
+            holder.cimage.setImageResource(R.drawable.music_back);
+        }
+
+
     }
 
     @Override
@@ -50,6 +66,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
         private TextView teacher;
         private TextView teacherMail;
         private TextView cdescription;
+        private ImageView cimage;
 
         ClassViewHolder(View itemView) {
             super(itemView);
@@ -57,6 +74,7 @@ public class ClassAdapter extends RecyclerView.Adapter<ClassAdapter.ClassViewHol
             teacher = itemView.findViewById(R.id.teacher);
             teacherMail = itemView.findViewById(R.id.teacherMail);
             cdescription = itemView.findViewById(R.id.classDescription);
+            cimage = itemView.findViewById(R.id.class_background);
         }
     }
 }

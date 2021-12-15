@@ -77,7 +77,19 @@ public List<UserEntity> getAllUsers() throws ExecutionException, InterruptedExce
 
         return future.get();
     }
+    public StudentEntity getStudentById(int id) throws ExecutionException, InterruptedException {
 
+        Callable<StudentEntity> callable = new Callable<StudentEntity>() {
+            @Override
+            public StudentEntity call() throws Exception {
+                return studentDao.getStudentById(id);
+            }
+        };
+
+        Future<StudentEntity> future = Executors.newSingleThreadExecutor().submit(callable);
+
+        return future.get();
+    }
     public boolean isValidAccount(String mail, String password) throws ExecutionException, InterruptedException {
         UserEntity userEntity = new GetUserByEmailAndPAsync(userDao,mail,password).execute().get();
         if(userEntity==null){
@@ -194,6 +206,11 @@ public List<UserEntity> getAllUsers() throws ExecutionException, InterruptedExce
 //
 //        return future.get();
 //    }
+
+    public void deleteClasses() {
+        new deleteAllClassesAsyncTask(classDao).execute();
+    }
+
     private static class UpdateCourseAsyncTask extends AsyncTask<StudentGradesEntity, Void, Void> {
         private StudentGradesDao dao;
 
@@ -278,7 +295,20 @@ public List<UserEntity> getAllUsers() throws ExecutionException, InterruptedExce
 //            return null;
 //        }
 //    }
+private static class deleteAllClassesAsyncTask extends AsyncTask<Void, Void, Void> {
 
+    private ClassDao classDao;
+
+    deleteAllClassesAsyncTask(ClassDao dao) {
+        this.classDao = dao;
+    }
+
+    @Override
+    protected Void doInBackground(Void... voids) {
+        classDao.deleteClasses();
+        return null;
+    }
+}
     private static class deleteAllGradesAsyncTask extends AsyncTask<Void, Void, Void> {
 
         private StudentGradesDao studentGradesDao;

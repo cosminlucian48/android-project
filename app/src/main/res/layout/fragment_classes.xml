@@ -4,13 +4,6 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_orange_light"
     android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Classes Fragment"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/classesView"
         android:layout_width="match_parent"

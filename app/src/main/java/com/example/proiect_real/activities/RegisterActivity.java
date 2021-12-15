@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private final String TAG = RegisterActivity.class.getSimpleName();
     EditText editTextUsername, editTextEmail, editTextPassword, editTextCnfPassword;
+    Spinner accountTypeSpinner;
     Button buttonRegister;
 
     TextView textViewLogin;
@@ -37,6 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextCnfPassword = findViewById(R.id.editTextCnfPassword);
         buttonRegister = findViewById(R.id.buttonRegister);
+        accountTypeSpinner = findViewById(R.id.accountTypeSpinner);
+
 
         textViewLogin = findViewById(R.id.textViewLogin);
         textViewLogin.setOnClickListener(new View.OnClickListener() {
@@ -54,9 +58,10 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = editTextEmail.getText().toString().trim();
                 String password = editTextPassword.getText().toString().trim();
                 String passwordConf = editTextCnfPassword.getText().toString().trim();
+                String accountType = accountTypeSpinner.getSelectedItem().toString();
 
                 if (password.equals(passwordConf)) {
-                    UserEntity userEntity = new UserEntity(userName,password,email,"student");
+                    UserEntity userEntity = new UserEntity(userName,password,email,accountType);
                     userViewModel.insert(userEntity);
                     Intent moveToLogin = new Intent(RegisterActivity.this, LogInActivity.class);
                     startActivity(moveToLogin);

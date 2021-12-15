@@ -16,4 +16,7 @@ public interface ClassDao {
 
     @Insert
     void insertClasses(List<ClassEntity> classEntityList);
+
+    @Query("Delete from class_table")
+    void deleteClasses();
 }

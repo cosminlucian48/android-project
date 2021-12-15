@@ -12,6 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proiect_real.R;
 import com.example.proiect_real.adapters.StudentGradeListAdapter;
+import com.example.proiect_real.data.DataConverter;
+import com.google.android.material.card.MaterialCardView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class StudentGradeViewHolder extends RecyclerView.ViewHolder {
     private final TextView studentNameView;
@@ -23,7 +28,7 @@ public class StudentGradeViewHolder extends RecyclerView.ViewHolder {
 
     public final Button addGradeButton;
     public final Button deleteGradeButton;
-    public ConstraintLayout gradesConstraintView;
+    public MaterialCardView gradesConstraintView;
 
     private final String TAG = StudentGradeViewHolder.class.getSimpleName();
 
@@ -44,18 +49,26 @@ public class StudentGradeViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(String name, String grades1,String grades2,String grades3,String grades4,String grades5){
-//        Log.d(TAG,name);
-//        Log.d(TAG + "1",grades1);
-//        Log.d(TAG+ "2",grades2);
-//        Log.d(TAG + "3",grades3);
-//        Log.d(TAG+ "4",grades4);
-//        Log.d(TAG+ "5",grades5);
-        studentGrade1.setText(grades1);
-        studentGrade2.setText(grades2);
-        studentGrade3.setText(grades3);
-        studentGrade4.setText(grades4);
-        studentGrade5.setText(grades5);
+        studentGrade1.setText(transformGrades(grades1));
+        studentGrade2.setText(transformGrades(grades2));
+        studentGrade3.setText(transformGrades(grades3));
+        studentGrade4.setText(transformGrades(grades4));
+        studentGrade5.setText(transformGrades(grades5));
         studentNameView.setText(name);
+    }
+
+    private String transformGrades(String gradesString){
+        List<Integer> gradesList1 = new ArrayList<>();
+        gradesList1 = DataConverter.fromJsonToList(gradesString);
+        String finalGrades = "";
+        for(int note: gradesList1){
+            if(finalGrades.equals("")){
+                finalGrades = "" + note;
+            }else {
+                finalGrades = finalGrades + ", " + note;
+            }
+        }
+        return  finalGrades;
     }
 
     public static StudentGradeViewHolder create(ViewGroup parent){

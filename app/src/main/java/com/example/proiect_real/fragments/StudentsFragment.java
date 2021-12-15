@@ -114,7 +114,7 @@ public class StudentsFragment extends Fragment {
         });
 
         FloatingActionButton fab = view.findViewById(R.id.addStudentFAB);
-
+        fab.setImageResource(R.drawable.plus_png);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,11 +152,12 @@ public class StudentsFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "on activity result student fragment");
         super.onActivityResult(requestCode, resultCode, data);
-        Bundle bundle = data.getExtras();
-        StudentModel studentModel = (StudentModel) bundle.getSerializable(NewStudentActivity.EXTRA_REPLY);
-        Log.d(TAG, studentModel.getLastName());
-        Log.d(TAG, studentModel.getParentFullName());
+
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Bundle bundle = data.getExtras();
+            StudentModel studentModel = (StudentModel) bundle.getSerializable(NewStudentActivity.EXTRA_REPLY);
+            Log.d(TAG, studentModel.getLastName());
+            Log.d(TAG, studentModel.getParentFullName());
             StudentEntity studentEntity = new StudentEntity(
                     studentModel.getFirstName(),
                     studentModel.getLastName(),

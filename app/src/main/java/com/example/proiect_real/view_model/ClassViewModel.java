@@ -28,4 +28,8 @@ public class ClassViewModel extends AndroidViewModel {
     public void insertClasses(List<ClassEntity> classEntityList){
         studentRepository.insertClasses(classEntityList);
     }
+
+    public void deleteAllClasses(){
+        studentRepository.deleteClasses();
+    }
 }

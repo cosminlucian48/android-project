@@ -1,60 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:background="@android:color/holo_red_light"
-    android:layout_margin="20dp">
+    android:layout_height="400dp"
+    android:layout_margin="20dp"
+    android:background="@color/teal_200"
+    app:cardElevation="10dp">>
 
-    <TextView
-        android:id="@+id/cname"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ClassName"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/teacher"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Teacher"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cname"
-        app:layout_constraintVertical_bias="0.072" />
+        <ImageView
+            android:id="@+id/class_background"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/shrek" />
 
-    <TextView
-        android:id="@+id/teacherMail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TeacherMail"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/teacher"
-        app:layout_constraintVertical_bias="0.283" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_margin="10dp"
+            >
 
-    <TextView
-        android:id="@+id/classDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Class description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.502" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/cname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ClassName"
+                android:textSize="26dp"/>
+
+            <TextView
+                android:id="@+id/teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teacher" />
+
+            <TextView
+                android:id="@+id/teacherMail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TeacherMail"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/classDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Class description" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

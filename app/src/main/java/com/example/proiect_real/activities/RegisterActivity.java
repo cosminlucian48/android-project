@@ -2,6 +2,7 @@ package com.example.proiect_real.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,8 @@ import com.example.proiect_real.dao.UserDao;
 import com.example.proiect_real.entity.UserEntity;
 import com.example.proiect_real.view_model.StudentViewModel;
 import com.example.proiect_real.view_model.UserViewModel;
+
+import org.apache.commons.lang3.math.NumberUtils;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -54,21 +57,30 @@ public class RegisterActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userName = editTextUsername.getText().toString().trim();
-                String email = editTextEmail.getText().toString().trim();
-                String password = editTextPassword.getText().toString().trim();
-                String passwordConf = editTextCnfPassword.getText().toString().trim();
-                String accountType = accountTypeSpinner.getSelectedItem().toString();
-
-                if (password.equals(passwordConf)) {
-                    UserEntity userEntity = new UserEntity(userName,password,email,accountType);
-                    userViewModel.insert(userEntity);
-                    Intent moveToLogin = new Intent(RegisterActivity.this, LogInActivity.class);
-                    startActivity(moveToLogin);
-
+                if (TextUtils.isEmpty(editTextUsername.getText()) ||
+                        TextUtils.isEmpty(editTextEmail.getText()) ||
+                        TextUtils.isEmpty(editTextPassword.getText()) ||
+                        TextUtils.isEmpty(editTextCnfPassword.getText())) {
+                    Toast.makeText(getApplicationContext(),"There are empty fields.",Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Password is not matching", Toast.LENGTH_SHORT).show();
 
+                    String userName = editTextUsername.getText().toString().trim();
+                    String email = editTextEmail.getText().toString().trim();
+                    String password = editTextPassword.getText().toString().trim();
+                    String passwordConf = editTextCnfPassword.getText().toString().trim();
+                    String accountType = accountTypeSpinner.getSelectedItem().toString();
+
+
+                    if (password.equals(passwordConf)) {
+                        UserEntity userEntity = new UserEntity(userName, password, email, accountType);
+                        userViewModel.insert(userEntity);
+                        Intent moveToLogin = new Intent(RegisterActivity.this, LogInActivity.class);
+                        startActivity(moveToLogin);
+
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "Password is not matching", Toast.LENGTH_SHORT).show();
+
+                    }
                 }
             }
         });

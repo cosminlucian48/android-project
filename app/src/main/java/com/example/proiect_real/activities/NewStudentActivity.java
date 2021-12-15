@@ -81,45 +81,52 @@ public class NewStudentActivity extends AppCompatActivity {
                     TextUtils.isEmpty(newStudentParentFullName.getText()) ||
                     TextUtils.isEmpty(newStudentParentEmail.getText()) ||
                     TextUtils.isEmpty(newStudentParentPhone.getText())) {
+
                 Log.d("Ciudattt", "problema");
                 Toast.makeText(getApplicationContext(), "Wrong Data!", Toast.LENGTH_SHORT).show();
 //                setResult(RESULT_CANCELED, replyIntent);
             } else {
-                String firstName = newStudentFirstName.getText().toString();
-                String lastName = newStudentLastName.getText().toString();
-                String birthdate = newStudentBirthDate.getDayOfMonth() + " " + newStudentBirthDate.getMonth() + " " + newStudentBirthDate.getYear();
-                Double height = Double.valueOf(newStudentHeight.getText().toString());
-                Integer weight = Integer.valueOf(newStudentWeight.getText().toString());
-                String email = newStudentEmail.getText().toString();
-                String address = newStudentAddress.getText().toString();
-                String parentFullName = newStudentParentFullName.getText().toString();
-                String parentEmail = newStudentParentEmail.getText().toString();
-                String parentPhone = newStudentParentPhone.getText().toString();
-                String sex = (String) ((RadioButton) findViewById(newStudentSexGroup.getCheckedRadioButtonId())).getText();
-                Log.d("SEXUL", sex);
-                boolean realSex;
-                if (sex.equals("F")) {
-                    realSex = true;
-                } else {
-                    realSex = false;
+                if(Double.parseDouble(newStudentHeight.getText().toString()) > 3.0 ||Double.parseDouble(newStudentHeight.getText().toString()) < 0 ){
+                    Toast.makeText(getApplicationContext(), "Height should be between 0 and 3.0.", Toast.LENGTH_SHORT).show();
+                }else if(Integer.parseInt(newStudentWeight.getText().toString()) > 200 ||Integer.parseInt(newStudentWeight.getText().toString()) < 0 ){
+                    Toast.makeText(getApplicationContext(), "Weight should be between 0 and 200.", Toast.LENGTH_SHORT).show();
+                }else {
+                    String firstName = newStudentFirstName.getText().toString();
+                    String lastName = newStudentLastName.getText().toString();
+                    String birthdate = newStudentBirthDate.getDayOfMonth() + " " + newStudentBirthDate.getMonth() + " " + newStudentBirthDate.getYear();
+                    Double height = Double.valueOf(newStudentHeight.getText().toString());
+                    Integer weight = Integer.valueOf(newStudentWeight.getText().toString());
+                    String email = newStudentEmail.getText().toString();
+                    String address = newStudentAddress.getText().toString();
+                    String parentFullName = newStudentParentFullName.getText().toString();
+                    String parentEmail = newStudentParentEmail.getText().toString();
+                    String parentPhone = newStudentParentPhone.getText().toString();
+                    String sex = (String) ((RadioButton) findViewById(newStudentSexGroup.getCheckedRadioButtonId())).getText();
+                    Log.d("SEXUL", sex);
+                    boolean realSex;
+                    if (sex.equals("F")) {
+                        realSex = true;
+                    } else {
+                        realSex = false;
+                    }
+                    Log.d("CIUDAT: ", firstName);
+                    Log.d("CIUDAT: ", String.valueOf(firstName.equals("")));
+                    StudentModel studentModel = new StudentModel(firstName,
+                            lastName,
+                            birthdate,
+                            height,
+                            weight,
+                            email,
+                            address,
+                            parentFullName,
+                            parentEmail,
+                            parentPhone,
+                            realSex);
+                    replyBundle.putSerializable(EXTRA_REPLY, studentModel);
+                    replyIntent.putExtras(replyBundle);
+                    setResult(RESULT_OK, replyIntent);
+                    finish();
                 }
-                Log.d("CIUDAT: ", firstName);
-                Log.d("CIUDAT: ", String.valueOf(firstName.equals("")));
-                StudentModel studentModel = new StudentModel(firstName,
-                        lastName,
-                        birthdate,
-                        height,
-                        weight,
-                        email,
-                        address,
-                        parentFullName,
-                        parentEmail,
-                        parentPhone,
-                        realSex);
-                replyBundle.putSerializable(EXTRA_REPLY, studentModel);
-                replyIntent.putExtras(replyBundle);
-                setResult(RESULT_OK, replyIntent);
-                finish();
             }
 
         });

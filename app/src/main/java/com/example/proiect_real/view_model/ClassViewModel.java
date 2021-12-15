@@ -9,12 +9,13 @@ import com.example.proiect_real.entity.ClassEntity;
 import com.example.proiect_real.repository.StudentRepository;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ClassViewModel extends AndroidViewModel {
     private StudentRepository studentRepository;
     private List<ClassEntity> classEntityList;
 
-    public ClassViewModel(@NonNull Application application) {
+    public ClassViewModel(@NonNull Application application) throws ExecutionException, InterruptedException {
         super(application);
         studentRepository = new StudentRepository(application);
         this.classEntityList = studentRepository.getAllClasses();

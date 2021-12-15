@@ -46,7 +46,7 @@ public class StudentRepository {
 
         allStudents = studentDao.getAllStudents();
         allUsers = userDao.getAllUsers();
-        allClasses = classDao.getAllClasses();
+//        allClasses = classDao.getAllClasses();
         allGrades = studentGradesDao.getAllGrades();
     }
 
@@ -54,10 +54,12 @@ public class StudentRepository {
         return allStudents;
     }
 
-    public LiveData<List<UserEntity>> getAllUsers() {
-        return allUsers;
-    }
-
+//    public LiveData<List<UserEntity>> getAllUsers() {
+//        return allUsers;
+//    }
+public List<UserEntity> getAllUsers() throws ExecutionException, InterruptedException {
+    return new GetUsersAsyncTask(userDao).execute().get();
+}
 //    public UserEntity getUser(String mail, String password) {
 //        return userDao.getUser(mail, password);
 //    }
@@ -76,13 +78,38 @@ public class StudentRepository {
         return future.get();
     }
 
-    public boolean isValidAccount(String mail, String password) {
-        UserEntity userEntity = userDao.getUser(mail, password);
-        if (userEntity == null) {
+    public boolean isValidAccount(String mail, String password) throws ExecutionException, InterruptedException {
+        UserEntity userEntity = new GetUserByEmailAndPAsync(userDao,mail,password).execute().get();
+        if(userEntity==null){
             return false;
         }
-        return userEntity.getPassword().equals(password);
+        return true;
+
+//        ClassroomRoomDatabase.databaseWriteExecutor.execute(() -> {
+//            userEntity[0] = userDao.getUser(mail, password);
+//            Log.d("repoo",userEntity[0].getPassword());
+//        });
+//
+//        if (userEntity[0] == null) {
+//            return false;
+//        }
+//        Log.d("AICI pls",String.valueOf(userEntity[0].getPassword()));
+//        return userEntity[0].getPassword().equals(password);
+
     }
+
+//    public StudentGradesEntity getGradeByStudentId(int id) throws ExecutionException, InterruptedException{
+//        Callable<StudentGradesEntity> callable = new Callable<StudentGradesEntity>() {
+//            @Override
+//            public StudentGradesEntity call() throws Exception {
+//                return studentGradesDao.getGradeByStudentId(id);
+//            }
+//        };
+//
+//        Future<StudentGradesEntity> future = Executors.newSingleThreadExecutor().submit(callable);
+//
+//        return future.get();
+//    }
 
     public void insert(StudentEntity studentEntity) {
         ClassroomRoomDatabase.databaseWriteExecutor.execute(() -> {
@@ -106,8 +133,8 @@ public class StudentRepository {
         new deleteStudentAsyncTask(studentDao, studentEntity).execute();
     }
 
-    public List<ClassEntity> getAllClasses() {
-        return allClasses;
+    public List<ClassEntity> getAllClasses() throws ExecutionException, InterruptedException {
+        return new GetClassesAsyncTask(classDao).execute().get();
     }
 
     public void insertClasses(List<ClassEntity> classEntityList) {
@@ -182,39 +209,75 @@ public class StudentRepository {
             return null;
         }
     }
-//    public void updateGrades2(StudentGradesEntity studentGradesEntity){
-//        int studentId;
-//        String curs1,curs2,curs3,curs4,curs5;
-//        Log.d("Mere","PERE");
-//
-//
-////        StudentGradesEntity studentGradesEntity1 = new StudentGradesEntity()
-//        new updateHitAsyncTask(studentGradesDao).execute(studentGradesEntity);
-//    }
 
+    private class GetUserByEmailAndPAsync extends AsyncTask<Void, Void,UserEntity>
+    {
+        private UserDao dao;
+        String email;
+        String password;
 
-    private static class updateHitAsyncTask extends AsyncTask<StudentGradesEntity,Void,Void>{
-
-        private StudentGradesDao studentGradesDao;
-
-        public updateHitAsyncTask(StudentGradesDao dao) {
-
-            studentGradesDao = dao;
+        public GetUserByEmailAndPAsync(UserDao dao,String email, String password) {
+            this.dao = dao;
+            this.email = email;
+            this.password = password;
         }
 
         @Override
-        protected Void doInBackground(StudentGradesEntity... studentGradesEntity) {
-//            int studentId = studentGradesEntity[0].getStudentId();
-            String subject1_grades = studentGradesEntity[0].getSubject1_grades_json();
-            String subject2_grades = studentGradesEntity[0].getSubject2_grades_json();
-            String subject3_grades = studentGradesEntity[0].getSubject3_grades_json();
-            String subject4_grades = studentGradesEntity[0].getSubject4_grades_json();
-            String subject5_grades = studentGradesEntity[0].getSubject5_grades_json();
-
-            studentGradesDao.update(studentGradesEntity[0]);
-            return null;
+        protected UserEntity doInBackground(Void... url) {
+            return dao.getUser(email,password);
         }
     }
+
+    private class GetUsersAsyncTask extends AsyncTask<Void, Void,List<UserEntity>>
+    {
+        private UserDao dao;
+
+        public GetUsersAsyncTask(UserDao dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected List<UserEntity> doInBackground(Void... url) {
+            return dao.getAllUsersList();
+        }
+    }
+
+    private class GetClassesAsyncTask extends AsyncTask<Void, Void,List<ClassEntity>>
+    {
+        private ClassDao dao;
+
+        public GetClassesAsyncTask(ClassDao dao) {
+            this.dao = dao;
+        }
+
+        @Override
+        protected List<ClassEntity> doInBackground(Void... url) {
+            return dao.getAllClasses();
+        }
+    }
+
+//    private static class updateHitAsyncTask extends AsyncTask<StudentGradesEntity,Void,Void>{
+//
+//        private StudentGradesDao studentGradesDao;
+//
+//        public updateHitAsyncTask(StudentGradesDao dao) {
+//
+//            studentGradesDao = dao;
+//        }
+//
+//        @Override
+//        protected Void doInBackground(StudentGradesEntity... studentGradesEntity) {
+////            int studentId = studentGradesEntity[0].getStudentId();
+//            String subject1_grades = studentGradesEntity[0].getSubject1_grades_json();
+//            String subject2_grades = studentGradesEntity[0].getSubject2_grades_json();
+//            String subject3_grades = studentGradesEntity[0].getSubject3_grades_json();
+//            String subject4_grades = studentGradesEntity[0].getSubject4_grades_json();
+//            String subject5_grades = studentGradesEntity[0].getSubject5_grades_json();
+//
+//            studentGradesDao.update(studentGradesEntity[0]);
+//            return null;
+//        }
+//    }
 
     private static class deleteAllGradesAsyncTask extends AsyncTask<Void, Void, Void> {
 

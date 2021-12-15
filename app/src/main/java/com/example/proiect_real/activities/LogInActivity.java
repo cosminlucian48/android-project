@@ -45,7 +45,7 @@ public class LogInActivity extends AppCompatActivity {
     TextView textViewRegister;
     private int counter = 5;
     ActivityResultLauncher<Intent> startActivityForResult;
-    LiveData<List<UserEntity>> userEntityList;
+    List<UserEntity> userEntityList;
     UserViewModel userViewModel;
     UserEntity userEntity;
 
@@ -105,30 +105,36 @@ public class LogInActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
 
                 hideSoftKeyboard();
-                if(validateCredentials(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString())){
-                    try {
-                        userEntity = userViewModel.getUser(usernameEditText.getText().toString(),passwordEditText.getText().toString());
-                        Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LogInActivity.this, MainScreenActivity.class);
-//                        Bundle bundle = new Bundle();
-                        UserModel userModel = new UserModel(userEntity.getUserName(),
-                                userEntity.getPassword(),
-                                userEntity.getEmail(),
-                                userEntity.getAccountType());
-//                        bundle.putSerializable(USERNAME_KEY,userModel);
-                        intent.putExtra(USERNAME_KEY, userModel);
-//                        setResult(RESULT_OK, intent);
-                        Log.d(TAG,"inainte de lauch");
-                        startActivityForResult.launch(intent);
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                Log.d(TAG,"CLICK PE LOGIN");
+                try {
+                    if(validateCredentials(usernameEditText.getText().toString(),
+                            passwordEditText.getText().toString())){
+                        try {
+                            userEntity = userViewModel.getUser(usernameEditText.getText().toString(),passwordEditText.getText().toString());
+                            Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LogInActivity.this, MainScreenActivity.class);
+    //                        Bundle bundle = new Bundle();
+                            UserModel userModel = new UserModel(userEntity.getUserName(),
+                                    userEntity.getPassword(),
+                                    userEntity.getEmail(),
+                                    userEntity.getAccountType());
+    //                        bundle.putSerializable(USERNAME_KEY,userModel);
+                            intent.putExtra(USERNAME_KEY, userModel);
+    //                        setResult(RESULT_OK, intent);
+                            Log.d(TAG,"inainte de lauch");
+                            startActivityForResult.launch(intent);
+                        } catch (ExecutionException e) {
+                            e.printStackTrace();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
 
-                }else{
-                    Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Log.d(TAG,"wrong credentials");
+                        Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (ExecutionException | InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -136,10 +142,11 @@ public class LogInActivity extends AppCompatActivity {
 
     }
 
-    private boolean validateCredentials(String username, String userPassword) {
+    private boolean validateCredentials(String username, String userPassword) throws ExecutionException, InterruptedException {
 //        if (username.equals("admin") && userPassword.equals("admin")) {
 //
-
+        Log.d(TAG, "Login button clicked! not yet checked");
+//        Log.d(TAG,String.valueOf(userViewModel.checkValidLogin(username,userPassword)));
         if (userViewModel.checkValidLogin(username,userPassword)) {
             Log.d(TAG, "Login button clicked!");
             return true;

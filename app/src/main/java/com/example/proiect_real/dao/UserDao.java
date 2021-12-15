@@ -17,11 +17,17 @@ public interface UserDao {
     @Query("SELECT * FROM user_table where email= :mail and password= :password")
     UserEntity getUser(String mail, String password);
 
+    @Query("select * from user_table where email= :mail and password= :password")
+    UserEntity getUserSync(String mail, String password);
+
     @Insert
     void insert(UserEntity userEntity);
 
     @Query("Select * from user_table")
     LiveData<List<UserEntity>> getAllUsers();
+
+    @Query("Select * from user_table")
+    List<UserEntity> getAllUsersList();
 
     @Update
     void update(UserEntity userEntity);

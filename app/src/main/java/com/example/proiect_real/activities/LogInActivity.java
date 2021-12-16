@@ -62,14 +62,6 @@ public class LogInActivity extends AppCompatActivity {
         counterTextView.setVisibility(View.GONE);
         textViewRegister = findViewById(R.id.textViewRegister);
 
-//        db = ClassroomRoomDatabase.getDatabase(this);
-//        userDao = db.userDao();
-//        Bundle bundle = getIntent().getExtras();
-//
-//        if(bundle != null){
-//            String usernameText = bundle.getString(MainScreenActivity.LOGOUT_KEY);
-//            usernameEditText.setText(usernameText);
-//        }
 
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
         userEntityList = userViewModel.getAllUsers();
@@ -113,15 +105,11 @@ public class LogInActivity extends AppCompatActivity {
                             userEntity = userViewModel.getUser(usernameEditText.getText().toString(),passwordEditText.getText().toString());
                             Toast.makeText(getApplicationContext(), "Redirecting...", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LogInActivity.this, MainScreenActivity.class);
-    //                        Bundle bundle = new Bundle();
                             UserModel userModel = new UserModel(userEntity.getUserName(),
                                     userEntity.getPassword(),
                                     userEntity.getEmail(),
                                     userEntity.getAccountType());
-    //                        bundle.putSerializable(USERNAME_KEY,userModel);
                             intent.putExtra(USERNAME_KEY, userModel);
-    //                        setResult(RESULT_OK, intent);
-                            Log.d(TAG,"inainte de lauch");
                             startActivityForResult.launch(intent);
                         } catch (ExecutionException e) {
                             e.printStackTrace();
@@ -130,7 +118,6 @@ public class LogInActivity extends AppCompatActivity {
                         }
 
                     }else{
-                        Log.d(TAG,"wrong credentials");
                         Toast.makeText(getApplicationContext(), "Wrong Credentials", Toast.LENGTH_SHORT).show();
                     }
                 } catch (ExecutionException | InterruptedException e) {
@@ -143,25 +130,10 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private boolean validateCredentials(String username, String userPassword) throws ExecutionException, InterruptedException {
-//        if (username.equals("admin") && userPassword.equals("admin")) {
-//
-        Log.d(TAG, "Login button clicked! not yet checked");
-//        Log.d(TAG,String.valueOf(userViewModel.checkValidLogin(username,userPassword)));
         if (userViewModel.checkValidLogin(username,userPassword)) {
             Log.d(TAG, "Login button clicked!");
             return true;
-
-
         } else {
-
-            counterTextView.setVisibility(View.VISIBLE);
-            counterTextView.setBackgroundColor(Color.RED);
-            counter--;
-            counterTextView.setText("Nr of attempts remaining: " + Integer.toString(counter));
-
-            if (counter == 0) {
-                login.setEnabled(false);
-            }
             return false;
         }
     }

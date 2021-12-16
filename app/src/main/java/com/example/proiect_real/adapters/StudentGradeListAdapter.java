@@ -69,7 +69,6 @@ public class StudentGradeListAdapter extends ListAdapter<StudentGradesEntity, St
         holder.addGradeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Log.d(TAG, "CLICK PE plus");
                 Intent intent = new Intent(context, NewGradesActivity.class);
                 intent.putExtra("test",current);
                 ((Activity) context).startActivityForResult(intent, NEW_GRADE_ACTIVITY_REQUEST_CODE);
@@ -79,41 +78,9 @@ public class StudentGradeListAdapter extends ListAdapter<StudentGradesEntity, St
         holder.deleteGradeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Log.d(TAG, "CLICK PE MINUS");
                 gradesViewModel.deleteGrade(current);
             }
         });
-    }
-
-        public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        Log.d(TAG,"m-am intors tati");
-////        super.onActivityResult(requestCode, resultCode, data);
-//        Bundle bundle = data.getExtras();
-//        String test = bundle.getString("String");
-//        Log.d(TAG,test);
-//        Log.d(TAG, studentModel.getLastName());
-//        Log.d(TAG, studentModel.getParentFullName());
-//        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-//            StudentEntity studentEntity = new StudentEntity(
-//                    studentModel.getFirstName(),
-//                    studentModel.getLastName(),
-//                    studentModel.getBirthday(),
-//                    studentModel.getHeight(),
-//                    studentModel.getWeight(),
-//                    studentModel.getEmail(),
-//                    studentModel.getAddress(),
-//                    studentModel.getParentFullName(),
-//                    studentModel.getParentEmail(),
-//                    studentModel.getParentPhone(),
-//                    studentModel.getSex()
-//            );
-//            studentViewModel.insert(studentEntity);
-//        } else {
-//            Toast.makeText(
-//                    getActivity().getBaseContext(),
-//                    "not possible",
-//                    Toast.LENGTH_LONG).show();
-//        }
     }
 
     public static class GradeDiff extends DiffUtil.ItemCallback<StudentGradesEntity> {

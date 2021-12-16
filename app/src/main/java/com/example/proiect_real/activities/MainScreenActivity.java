@@ -33,7 +33,6 @@ public class MainScreenActivity extends AppCompatActivity implements NavigationV
     public final static String LOGOUT_KEY = "logoutkey";
     private static final String TAG = MainScreenActivity.class.getSimpleName();
     private DrawerLayout drawer;
-    public ActionBarDrawerToggle actionBarDrawerToggle;
     UserModel loggedInUser;
     public GradesFragment gradesFragment;
 
@@ -58,7 +57,6 @@ public class MainScreenActivity extends AppCompatActivity implements NavigationV
         if (bundle != null) {
             loggedInUser = (UserModel) bundle.getSerializable(LogInActivity.USERNAME_KEY);
             Log.d(TAG, loggedInUser.getEmail());
-//                        usernameEditText.setText(message);
         }
 
 
@@ -121,14 +119,6 @@ public class MainScreenActivity extends AppCompatActivity implements NavigationV
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        Log.d(TAG,"problema");
-////        super.onActivityResult(requestCode, resultCode, data);
-//        gradesFragment.onActivityResult(requestCode, resultCode, data);
-//        super.onActivityResult(requestCode, resultCode, data);
-//    }
 
     @Override
     public void onBackPressed() {

@@ -58,19 +58,6 @@ public class NewStudentActivity extends AppCompatActivity {
         button.setOnClickListener(view -> {
             Intent replyIntent = new Intent();
             Bundle replyBundle = new Bundle();
-//            Log.d("CIUDAT",newStudentFirstName.getText().toString());
-//            NumberUtils.isParsable(newStudentHeight.getText().toString());
-//            Log.d("Ciudat: " + "1", String.valueOf(TextUtils.isEmpty(newStudentFirstName.getText())));
-//            Log.d("Ciudat: "+ "2", String.valueOf(TextUtils.isEmpty(newStudentLastName.getText())));
-//            Log.d("Ciudat: "+ "3", String.valueOf(newStudentBirthDate.getYear() > 2021));
-//            Log.d("Ciudat: "+ "4", String.valueOf(!NumberUtils.isParsable(newStudentHeight.getText().toString())));
-//            Log.d("Ciudat: "+ "5", String.valueOf(!NumberUtils.isParsable(newStudentWeight.getText().toString())));
-//            Log.d("Ciudat: "+ "6", String.valueOf(TextUtils.isEmpty(newStudentEmail.getText())));
-//            Log.d("Ciudat: "+ "7", String.valueOf(TextUtils.isEmpty(newStudentAddress.getText())));
-//            Log.d("Ciudat: "+ "8", String.valueOf(TextUtils.isEmpty(newStudentParentFullName.getText())));
-//            Log.d("Ciudat: "+ "9", String.valueOf(TextUtils.isEmpty(newStudentParentEmail.getText())));
-//            Log.d("Ciudat: "+ "10", String.valueOf(TextUtils.isEmpty(newStudentParentPhone.getText())));
-
             if (TextUtils.isEmpty(newStudentFirstName.getText()) ||
                     TextUtils.isEmpty(newStudentLastName.getText()) ||
                     newStudentBirthDate.getYear() > 2021 ||
@@ -84,7 +71,6 @@ public class NewStudentActivity extends AppCompatActivity {
 
                 Log.d("Ciudattt", "problema");
                 Toast.makeText(getApplicationContext(), "Wrong Data!", Toast.LENGTH_SHORT).show();
-//                setResult(RESULT_CANCELED, replyIntent);
             } else {
                 if(Double.parseDouble(newStudentHeight.getText().toString()) > 3.0 ||Double.parseDouble(newStudentHeight.getText().toString()) < 0 ){
                     Toast.makeText(getApplicationContext(), "Height should be between 0 and 3.0.", Toast.LENGTH_SHORT).show();

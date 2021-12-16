@@ -42,7 +42,6 @@ public class NewGradesActivity extends AppCompatActivity {
         button = findViewById(R.id.addNewGrades);
         gradesViewModel = new ViewModelProvider(this).get(GradesViewModel.class);
         StudentGradesEntity studentGradesEntity = (StudentGradesEntity) getIntent().getExtras().getSerializable("test");
-//        studentGradesModel.setSubject2_grades_json("Ana");
 
         studentGrade1 = findViewById(R.id.mat1);
         studentGrade2 = findViewById(R.id.mat2);
@@ -50,17 +49,6 @@ public class NewGradesActivity extends AppCompatActivity {
         studentGrade4 = findViewById(R.id.mat4);
         studentGrade5 = findViewById(R.id.mat5);
 
-
-//        StudentGradesEntity updatedStudentGradesEntity
-//        Log.d(TAG+"1",String.valueOf(studentGradesEntity.getStudentId()));
-//        Log.d(TAG+"2",String.valueOf(studentGradesEntity.getSubject1_grades_json()));
-//        Log.d(TAG+"3",String.valueOf(studentGradesEntity.getSubject2_grades_json()));
-//        Log.d(TAG+"4",String.valueOf(studentGradesEntity.getSubject3_grades_json()));
-//        Log.d(TAG+"5",String.valueOf(studentGradesEntity.getSubject4_grades_json()));
-//        Log.d(TAG+"6",String.valueOf(studentGradesEntity.getSubject5_grades_json()));
-
-
-//        Log.d(TAG,String.valueOf(studentGradesModel.getStudentId()));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

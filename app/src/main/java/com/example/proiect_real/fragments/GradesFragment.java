@@ -120,9 +120,4 @@ public class GradesFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        Log.d(TAG,"M AM INTORS SI MAI BINEEEE");
-        adapter.onActivityResult(requestCode,resultCode,data);
-    }
 }

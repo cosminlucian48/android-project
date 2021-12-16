@@ -15,24 +15,19 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-//        finish();
 
         Thread background = new Thread() {
             public void run() {
                 try {
-                    // Thread will sleep for 5 seconds
-                    sleep(3*1000);
+                    sleep(3 * 1000);
 
-                    // After 5 seconds redirect to another intent
                     startActivity(new Intent(SplashScreenActivity.this, LogInActivity.class));
 
-                    //Remove activity
                     finish();
                 } catch (Exception e) {
                 }
             }
         };
-        // start thread
         background.start();
     }
 }

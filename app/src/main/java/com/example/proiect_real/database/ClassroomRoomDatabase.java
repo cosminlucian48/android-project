@@ -29,8 +29,11 @@ import java.util.concurrent.Executors;
 public abstract class ClassroomRoomDatabase extends RoomDatabase {
 
     public abstract StudentDao studentDao();
+
     public abstract UserDao userDao();
+
     public abstract ClassDao classDao();
+
     public abstract StudentGradesDao studentGradesDao();
 
     private static final String DB_name = "student_table";
@@ -40,7 +43,7 @@ public abstract class ClassroomRoomDatabase extends RoomDatabase {
 
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-    private static final Migration MIGRATION_1_2 = new Migration(1,2) {
+    private static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("CREATE TABLE `user_table` (`id` INTEGER PRIMARY KEY NOT NULL," +
@@ -48,7 +51,7 @@ public abstract class ClassroomRoomDatabase extends RoomDatabase {
         }
     };
 
-    private static final Migration MIGRATION_2_3 = new Migration(2,3) {
+    private static final Migration MIGRATION_2_3 = new Migration(2, 3) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("CREATE TABLE `class_table` (`id` INTEGER PRIMARY KEY NOT NULL," +
@@ -56,7 +59,7 @@ public abstract class ClassroomRoomDatabase extends RoomDatabase {
         }
     };
 
-    private static final Migration MIGRATION_3_4 = new Migration(3,4) {
+    private static final Migration MIGRATION_3_4 = new Migration(3, 4) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
             database.execSQL("CREATE TABLE `grades_table` (`id` INTEGER PRIMARY KEY NOT NULL," +
@@ -64,21 +67,13 @@ public abstract class ClassroomRoomDatabase extends RoomDatabase {
                     "`subject4_grades_json` TEXT, `subject5_grades_json` TEXT   )");
         }
     };
-//    private int id;
-//    private int studentId;
-//    private String subject1_grades_json;
-//    private String subject2_grades_json;
-//    private String subject3_grades_json;
-//    private String subject4_grades_json;
-//    private String subject5_grades_json;
-
 
     public static ClassroomRoomDatabase getDatabase(final Context context) {
-//        Log.d(TAG,"aici e schema");
+
 
         if (INSTANCE == null) {
             synchronized (ClassroomRoomDatabase.class) {
-                if(INSTANCE == null) {
+                if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             ClassroomRoomDatabase.class, DB_name)
                             .addMigrations(MIGRATION_1_2)
@@ -97,30 +92,6 @@ public abstract class ClassroomRoomDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-
-            Log.d(TAG,"aici ar trebui sa fie schema");
-            // If you want to keep data through app restarts,
-            // comment out the following block
-//            databaseWriteExecutor.execute(() -> {
-//                // Populate the database in the background.
-//                // If you want to start with more words, just add them.
-//                StudentDao dao = INSTANCE.studentDao();
-//                LiveData<List<StudentEntity>> studentEntityList = dao.getAllStudents();
-//
-//                Log.d(TAG, String.valueOf(studentEntityList));
-//                dao.deleteAll();
-//
-//                studentEntityList = dao.getAllStudents();
-//
-//                Log.d(TAG, String.valueOf(studentEntityList));
-//
-//
-//
-////                Word word = new Word("Hello");
-////                dao.insert(word);
-////                word = new Word("World");
-////                dao.insert(word);
-//            });
         }
     };
 
